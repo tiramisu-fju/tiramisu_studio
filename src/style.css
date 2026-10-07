@@ -1,10 +1,10 @@
 :root {
   /* Tiramisu Palette — sampled from public/tiramisu_logo */
-  --accent: #8B4523;               /* Cocoa Powder (logo top) */
-  --accent-rgb: 139, 69, 35;
-  --accent-deep: #5E2A12;          /* Dark Cocoa */
-  --accent-light: #FBEFDC;         /* Mascarpone Cream (logo layer) */
-  --accent-border: #EBCFA8;        /* Ladyfinger Sponge */
+  --accent: #5B7536;               /* Mint Leaf (logo garnish) */
+  --accent-rgb: 91, 117, 54;
+  --accent-deep: #3F5424;          /* Deep Leaf */
+  --accent-light: #EDF2E2;         /* Leaf Tint */
+  --accent-border: #CBD8B4;        /* Soft Leaf */
 
   --cocoa-dark: #4F1D08;           /* Logo wordmark brown */
   --espresso-black: #2A1206;       /* Ultra Deep Espresso */

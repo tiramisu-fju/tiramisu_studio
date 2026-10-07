@@ -44,9 +44,9 @@ const principles = [
 <template>
   <section id="approach" class="approach-section">
     <div class="container">
-      <p class="section-label">02 / APPROACH</p>
-      <h2 class="section-title">我們的設計重點</h2>
-      <p class="keywords">
+      <p v-reveal class="section-label">02 / APPROACH</p>
+      <h2 v-reveal="80" class="section-title">我們的設計重點</h2>
+      <p v-reveal="160" class="keywords">
         <template v-for="(k, i) in keywords" :key="k">
           <span v-if="i > 0" class="keyword-sep" aria-hidden="true">×</span>
           <span>{{ k }}</span>
@@ -54,7 +54,7 @@ const principles = [
       </p>
 
       <div class="principles-grid">
-        <article v-for="p in principles" :key="p.no" class="principle-card">
+        <article v-for="(p, i) in principles" :key="p.no" v-reveal="(i % 3) * 100" class="principle-card">
           <span class="principle-no">{{ p.no }}</span>
           <h3 class="principle-title">{{ p.title }}</h3>
           <p class="principle-lead">{{ p.lead }}</p>

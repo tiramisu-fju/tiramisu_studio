@@ -69,16 +69,16 @@ const guarantees = [
 <template>
   <section id="process" class="process-section">
     <div class="container">
-      <p class="section-label-dark">03 / PROCESS</p>
-      <h2 class="section-title-dark">合作流程</h2>
-      <p class="flow-summary">洽談 → 規劃 → 設計 → 開發 → 測試 → 上線 → 維護</p>
-      <p class="section-desc-dark">
+      <p v-reveal class="section-label-dark">03 / PROCESS</p>
+      <h2 v-reveal="80" class="section-title-dark">合作流程</h2>
+      <p v-reveal="160" class="flow-summary">洽談 → 規劃 → 設計 → 開發 → 測試 → 上線 → 維護</p>
+      <p v-reveal="240" class="section-desc-dark">
         每一個階段都清楚可見，不讓你的專案陷入資訊黑洞。
       </p>
 
       <!-- 7 Steps Timeline -->
       <ol class="steps-list">
-        <li v-for="s in steps" :key="s.no" class="step-item">
+        <li v-for="s in steps" :key="s.no" v-reveal class="step-item">
           <div class="step-no">{{ s.no }}</div>
           <div class="step-main">
             <h3 class="step-title">{{ s.title }}</h3>
@@ -95,7 +95,7 @@ const guarantees = [
 
       <!-- 4 Guarantees Grid -->
       <div class="guarantees-grid">
-        <div v-for="g in guarantees" :key="g.title" class="guarantee-card">
+        <div v-for="(g, i) in guarantees" :key="g.title" v-reveal="i * 100" class="guarantee-card">
           <div class="guarantee-title">
             <svg class="guarantee-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>

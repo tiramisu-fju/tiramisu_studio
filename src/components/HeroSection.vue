@@ -11,13 +11,13 @@ const stats = [
     sub: '不綁架合約，無隱藏保留'
   },
   {
-    num: '< 2 小時',
+    num: '< 10 分鐘',
     label: '營業時間平均回覆',
     sub: '工程師直接溝通，免轉達'
   },
   {
     num: '3～6 個月',
-    label: '上線後免費完整保固',
+    label: '上線後完整保固',
     sub: '安心驗收，長期系統支援'
   }
 ]
@@ -78,8 +78,8 @@ const stats = [
 
       <!-- 4 Stats Cards Grid -->
       <div class="stats-grid">
-        <div v-for="stat in stats" :key="stat.label" class="stat-card">
-          <div class="stat-number">{{ stat.num }}</div>
+        <div v-for="(stat, i) in stats" :key="stat.label" v-reveal="i * 100" class="stat-card">
+          <div v-count-up="stat.num" class="stat-number">{{ stat.num }}</div>
           <div class="stat-label">{{ stat.label }}</div>
           <div class="stat-sub">{{ stat.sub }}</div>
         </div>
@@ -117,11 +117,82 @@ const stats = [
   gap: 48px;
 }
 
+/* Logo: rise-in on load, then a slow float with a breathing glow behind it */
+.hero-visual {
+  position: relative;
+  animation: logo-enter 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 4% 14% 30%;
+  background: radial-gradient(circle, rgba(232, 201, 160, 0.7) 0%, transparent 68%);
+  filter: blur(12px);
+  animation: logo-glow 5s ease-in-out 1s infinite;
+}
+
 .hero-visual img {
+  position: relative;
   width: 100%;
   max-width: 440px;
   height: auto;
   margin: 0 auto;
+  animation: logo-float 5s ease-in-out 1s infinite;
+}
+
+@keyframes logo-enter {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes logo-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-1.2deg);
+  }
+}
+
+@keyframes logo-glow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Reduced motion: keep the fade-in and glow, drop all movement */
+@keyframes logo-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes logo-glow-soft {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual {
+    animation: logo-fade 1.2s ease both;
+  }
+  .hero-visual::before {
+    animation-name: logo-glow-soft;
+  }
+  .hero-visual img {
+    animation: none;
+  }
 }
 
 @media (max-width: 900px) {

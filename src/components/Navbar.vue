@@ -1,17 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const props = defineProps<{
-  currentAccent: string
-  accentOptions: { name: string; hex: string }[]
-}>()
-
-const emit = defineEmits<{
-  (e: 'update:accent', color: string): void
-}>()
-
 const isMenuOpen = ref(false)
-const showPaletteMenu = ref(false)
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -19,11 +9,6 @@ const toggleMenu = () => {
 
 const closeMenu = () => {
   isMenuOpen.value = false
-}
-
-const selectAccent = (hex: string) => {
-  emit('update:accent', hex)
-  showPaletteMenu.value = false
 }
 </script>
 
@@ -46,25 +31,8 @@ const selectAccent = (hex: string) => {
         <a href="#faq" class="nav-link">常見問題</a>
       </nav>
 
-      <!-- Right actions: Accent Switcher & Consultation Button -->
+      <!-- Right actions: Consultation Button -->
       <div class="nav-actions">
-        <!-- Palette Switcher -->
-        <div class="palette-switcher">
-          <span class="palette-label">主題色：</span>
-          <div class="palette-dots">
-            <button
-              v-for="opt in accentOptions"
-              :key="opt.hex"
-              class="dot-btn"
-              :class="{ active: currentAccent === opt.hex }"
-              :style="{ backgroundColor: opt.hex }"
-              :title="opt.name"
-              @click="selectAccent(opt.hex)"
-              :aria-label="opt.name"
-            ></button>
-          </div>
-        </div>
-
         <a href="#contact" class="btn btn-primary btn-sm">免費諮詢</a>
 
         <!-- Mobile hamburger toggle -->
@@ -89,21 +57,6 @@ const selectAccent = (hex: string) => {
         <a href="#process" class="mobile-link" @click="closeMenu">合作流程</a>
         <a href="#about" class="mobile-link" @click="closeMenu">關於我們</a>
         <a href="#faq" class="mobile-link" @click="closeMenu">常見問題</a>
-
-        <div class="mobile-theme-pick">
-          <span class="palette-label">選擇主題配色：</span>
-          <div class="palette-dots">
-            <button
-              v-for="opt in accentOptions"
-              :key="opt.hex"
-              class="dot-btn"
-              :class="{ active: currentAccent === opt.hex }"
-              :style="{ backgroundColor: opt.hex }"
-              :title="opt.name"
-              @click="selectAccent(opt.hex)"
-            ></button>
-          </div>
-        </div>
 
         <a href="#contact" class="btn btn-primary mobile-cta" @click="closeMenu">立即免費諮詢</a>
       </div>
@@ -216,48 +169,6 @@ const selectAccent = (hex: string) => {
   gap: 16px;
 }
 
-.palette-switcher {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--bg-card);
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-light);
-}
-
-.palette-label {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.palette-dots {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.dot-btn {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid #FFFFFF;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(79, 29, 8, 0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
-  padding: 0;
-}
-
-.dot-btn:hover {
-  transform: scale(1.25);
-}
-
-.dot-btn.active {
-  transform: scale(1.25);
-  box-shadow: 0 0 0 2px var(--text-main);
-}
-
 .btn-sm {
   padding: 8px 18px;
   font-size: 14px;
@@ -287,9 +198,6 @@ const selectAccent = (hex: string) => {
 
 @media (max-width: 960px) {
   .nav-links {
-    display: none;
-  }
-  .palette-switcher {
     display: none;
   }
   .mobile-toggle {
@@ -328,13 +236,6 @@ const selectAccent = (hex: string) => {
   color: var(--text-main);
   padding: 8px 0;
   border-bottom: 1px solid var(--border-light);
-}
-
-.mobile-theme-pick {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
 }
 
 .mobile-cta {

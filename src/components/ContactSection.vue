@@ -65,15 +65,15 @@ const resetForm = () => {
     <div class="container contact-container">
       <!-- Left Column: Contact info & Direct LINE -->
       <div class="contact-info">
-        <p class="section-label">07 / CONTACT</p>
-        <h2 class="section-title">聊聊你的網站需求</h2>
-        <p class="contact-intro">
+        <p v-reveal class="section-label">07 / CONTACT</p>
+        <h2 v-reveal="80" class="section-title">聊聊你的網站需求</h2>
+        <p v-reveal="160" class="contact-intro">
           還沒完全想清楚規格也完全沒關係，簡單描述您目前的生意現況與想解決的痛點，我們會在 <strong>2 小時內親自回覆</strong>，為您梳理最省成本的解法與建議。
         </p>
 
-        <div class="direct-channels">
+        <div v-reveal="240" class="direct-channels">
           <a
-            href="https://line.me"
+            href="https://lin.ee/wAmRdNX"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-line btn-line-contact"
@@ -85,13 +85,13 @@ const resetForm = () => {
           </a>
 
           <div class="channel-list">
-            <div class="channel-item">
+            <!-- <div class="channel-item">
               <span class="channel-label">專屬 Email：</span>
               <a href="mailto:hello@tiramisustudio.tw" class="channel-link">hello@tiramisustudio.tw</a>
-            </div>
+            </div> -->
             <div class="channel-item">
               <span class="channel-label">PRO360 專家合作：</span>
-              <a href="https://pro360.com.tw" target="_blank" rel="noopener noreferrer" class="channel-link">PRO360 官方驗證頁面連結 →</a>
+              <a href="https://www.pro360.com.tw/service/724506" target="_blank" rel="noopener noreferrer" class="channel-link">PRO360 官方驗證頁面連結 →</a>
             </div>
             <div class="channel-item">
               <span class="channel-label">服務時段：</span>
@@ -101,89 +101,6 @@ const resetForm = () => {
         </div>
       </div>
 
-      <!-- Right Column: Interactive Form -->
-      <div class="contact-form-card">
-        <!-- Success State -->
-        <div v-if="submitted" class="success-box">
-          <div class="success-icon">✓</div>
-          <h3 class="success-title">需求已成功送出！</h3>
-          <p class="success-desc">
-            感謝您的聯繫，我們兩位工程師已收到您的資訊。我們會在 <strong>2 小時內</strong> 透過您留下的 LINE 或 Email 與您接洽！
-          </p>
-          <button type="button" class="btn btn-secondary btn-sm" @click="resetForm">
-            再填寫一筆需求
-          </button>
-        </div>
-
-        <!-- Form Fields -->
-        <form v-else @submit.prevent="handleSubmit" class="inquiry-form">
-          <div class="form-title">填寫需求初步諮詢</div>
-
-          <div v-if="errorMessage" class="error-banner">
-            {{ errorMessage }}
-          </div>
-
-          <div class="form-group">
-            <label for="f-name" class="form-label">怎麼稱呼你 <span class="required">*</span></label>
-            <input
-              id="f-name"
-              v-model="form.name"
-              type="text"
-              placeholder="例如：王小姐 / 陳先生"
-              class="form-input"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="f-contact" class="form-label">LINE ID 或 Email <span class="required">*</span></label>
-            <input
-              id="f-contact"
-              v-model="form.contact"
-              type="text"
-              placeholder="例如：tiramisu_studio 或 name@gmail.com"
-              class="form-input"
-              required
-            />
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="f-industry" class="form-label">所屬產業</label>
-              <select id="f-industry" v-model="form.industry" class="form-select">
-                <option v-for="ind in industries" :key="ind" :value="ind">{{ ind }}</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="f-budget" class="form-label">預算範圍</label>
-              <select id="f-budget" v-model="form.budget" class="form-select">
-                <option v-for="b in budgets" :key="b" :value="b">{{ b }}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="f-msg" class="form-label">簡單描述目前需求或遇到的問題</label>
-            <textarea
-              id="f-msg"
-              v-model="form.message"
-              rows="4"
-              placeholder="例如：我們是一間新開幕美睫沙龍，想做一個能線上預約、串接 LINE 通知的網站..."
-              class="form-textarea"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="btn btn-primary form-submit-btn"
-            :disabled="isSubmitting"
-          >
-            <span v-if="isSubmitting">傳送中...</span>
-            <span v-else>送出詢問（兩小時內親自回覆）</span>
-          </button>
-        </form>
-      </div>
     </div>
   </section>
 </template>

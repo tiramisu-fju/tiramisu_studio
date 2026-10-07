@@ -21,14 +21,14 @@ const benefits = [
 <template>
   <section id="early" class="early-section">
     <div class="container">
-      <p class="section-label">04 / FOUNDING CLIENTS</p>
-      <h2 class="section-title">首批合作客戶方案</h2>
-      <p class="section-desc">
+      <p v-reveal class="section-label">04 / FOUNDING CLIENTS</p>
+      <h2 v-reveal="80" class="section-title">首批合作客戶方案</h2>
+      <p v-reveal="160" class="section-desc">
         工作室剛成立，我們想用最認真、最無微不至的態度雕琢前幾個案子。限量前 5 位合作客戶，享有以下誠意條件：
       </p>
 
       <div class="benefits-grid">
-        <div v-for="b in benefits" :key="b.title" class="benefit-card">
+        <div v-for="(b, i) in benefits" :key="b.title" v-reveal="i * 100" class="benefit-card">
           <div class="benefit-tag">{{ b.tag }}</div>
           <h3 class="benefit-title">{{ b.title }}</h3>
           <p class="benefit-desc">{{ b.desc }}</p>
@@ -36,7 +36,7 @@ const benefits = [
       </div>
 
       <!-- Trust note / Future review showcase banner -->
-      <div class="review-hint-banner">
+      <div v-reveal class="review-hint-banner">
         <div class="hint-icon">💬</div>
         <div class="hint-content">
           <strong>真實口碑共同成長：</strong>

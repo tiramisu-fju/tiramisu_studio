@@ -103,13 +103,13 @@ const services = [
 <template>
   <section id="services" class="services-section">
     <div class="container">
-      <p class="section-label">01 / SERVICES</p>
-      <h2 class="section-title">服務內容</h2>
-      <p class="section-desc">
+      <p v-reveal class="section-label">01 / SERVICES</p>
+      <h2 v-reveal="80" class="section-title">服務內容</h2>
+      <p v-reveal="160" class="section-desc">
         從網站設計、客製系統開發到部署上線與長期維護，全程由同一組工程師負責到底。
       </p>
 
-      <div class="pillars" aria-label="服務範疇">
+      <div v-reveal="240" class="pillars" aria-label="服務範疇">
         <template v-for="(p, i) in pillars" :key="p">
           <span v-if="i > 0" class="pillar-sep" aria-hidden="true">｜</span>
           <span class="pillar">{{ p }}</span>
@@ -117,7 +117,7 @@ const services = [
       </div>
 
       <div class="services-grid">
-        <div v-for="s in services" :key="s.no" class="service-card">
+        <div v-for="(s, i) in services" :key="s.no" v-reveal="(i % 3) * 100" class="service-card">
           <div class="service-header">
             <span class="service-no">{{ s.no }}</span>
             <div class="service-icon-wrap">

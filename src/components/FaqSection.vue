@@ -25,7 +25,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: '付款方式是什麼？可以分階段支付嗎？',
-    a: '標準合作採三期付款：簽約啟動付訂 40%、視覺原型確認 30%、驗收部署上線 30%。支持公司銀行匯款、即期支票，並依法開立統一發票。'
+    a: '標準合作採三期付款：簽約啟動付訂 40%、視覺原型確認 30%、驗收部署上線 30%。支持公司銀行匯款。'
   },
   {
     q: '上線後如果網站發生問題或當機怎麼辦？',
@@ -43,9 +43,9 @@ const toggleFaq = (index: number) => {
 <template>
   <section id="faq" class="faq-section">
     <div class="faq-container">
-      <p class="section-label">06 / FAQ</p>
-      <h2 class="section-title">第一次做網站常問的問題</h2>
-      <p class="section-desc">
+      <p v-reveal class="section-label">06 / FAQ</p>
+      <h2 v-reveal="80" class="section-title">第一次做網站常問的問題</h2>
+      <p v-reveal="160" class="section-desc">
         我們將客戶最常關心的疑慮整理於此。如果您有其他特定問題，隨時歡迎加 LINE 詢問。
       </p>
 
@@ -53,6 +53,7 @@ const toggleFaq = (index: number) => {
         <div
           v-for="(item, idx) in faqs"
           :key="idx"
+          v-reveal="idx * 60"
           class="faq-item"
           :class="{ 'is-open': openIndex === idx }"
         >
