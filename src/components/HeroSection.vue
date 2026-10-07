@@ -10,7 +10,7 @@ const stats = [
   {
     num: '5+ 年',
     label: '網站開發經驗',
-    sub: '曾任助教，擅長把技術講清楚'
+    sub: '複雜架構，用白話講給你聽'
   },
   {
     num: '100%',
@@ -74,13 +74,15 @@ const stats = [
         <!-- Brand Logo -->
         <div class="hero-visual">
           <div class="hero-visual-scroll">
-            <img
-              src="/brand/logo-full.webp"
-              alt="緹拉米蘇 Tiramisu Web Studio — 網站開發 × 部屬維運 × 使用者體驗"
-              width="720"
-              height="716"
-              fetchpriority="high"
-            >
+            <div class="hero-cake">
+              <img src="/brand/hero-cake.webp" alt="" width="465" height="468" fetchpriority="high">
+            </div>
+
+            <div class="brand-lockup">
+              <p class="lockup-name">緹拉米蘇</p>
+              <p class="lockup-en">Tiramisu Web Studio</p>
+              <p class="lockup-tagline">網站開發 × 部署維運 × 使用者體驗</p>
+            </div>
           </div>
         </div>
       </div>
@@ -141,13 +143,54 @@ const stats = [
   animation: logo-glow 5s ease-in-out 1s infinite;
 }
 
-.hero-visual img {
+.hero-cake {
   position: relative;
-  width: 100%;
-  max-width: 440px;
-  height: auto;
+  max-width: 400px;
   margin: 0 auto;
   animation: logo-float 5s ease-in-out 1s infinite;
+}
+
+.hero-cake img {
+  display: block;
+  width: 78%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Wordmark set in live text (crisp at any size, and fixes the 部署 typo in the logo artwork) */
+.brand-lockup {
+  position: relative;
+  margin-top: 4px;
+  text-align: center;
+  color: var(--cocoa-dark);
+}
+
+.lockup-name {
+  margin: 0;
+  font-size: clamp(40px, 5.2vw, 64px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+}
+
+.lockup-en {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.5vw, 19px);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+}
+
+.lockup-tagline {
+  margin: 10px 0 0;
+  font-size: clamp(12px, 1.35vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  color: var(--text-body);
 }
 
 @keyframes logo-enter {
@@ -226,7 +269,7 @@ const stats = [
   .hero-visual-scroll::before {
     animation-name: logo-glow-soft;
   }
-  .hero-visual img {
+  .hero-cake {
     animation: none;
   }
   .hero-copy,
@@ -243,8 +286,11 @@ const stats = [
   .hero-visual {
     order: -1;
   }
-  .hero-visual img {
+  .hero-cake {
     max-width: 260px;
+  }
+  .lockup-name {
+    font-size: 34px;
   }
 }
 

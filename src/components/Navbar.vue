@@ -1,7 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const isMenuOpen = ref(false)
+
+// Logo cake animation loops seamlessly (the clip's ending is cross-faded into its opening);
+// reduced motion keeps the static icon
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const logoVideo = ref<HTMLVideoElement | null>(null)
+
+onMounted(() => {
+  // Some browsers ignore the autoplay attribute on elements created by script
+  logoVideo.value?.play().catch(() => {})
+})
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -17,7 +27,24 @@ const closeMenu = () => {
     <div class="navbar-container">
       <!-- Logo -->
       <a href="#top" class="brand-logo" @click="closeMenu">
-        <img class="brand-icon" src="/brand/logo-icon.webp" alt="" width="44" height="44">
+        <video
+          v-if="!reduceMotion"
+          ref="logoVideo"
+          class="brand-icon brand-video"
+          width="44"
+          height="44"
+          poster="/brand/logo-anim-poster.webp"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/brand/logo-anim.webm" type="video/webm">
+          <source src="/brand/logo-anim.mp4" type="video/mp4">
+        </video>
+        <img v-else class="brand-icon" src="/brand/logo-icon.webp" alt="" width="44" height="44">
         <span class="brand-text">緹拉米蘇</span>
         <span class="brand-sub">Tiramisu Web Studio</span>
       </a>
@@ -99,6 +126,18 @@ const closeMenu = () => {
   height: 44px;
   object-fit: contain;
   transition: var(--transition);
+}
+
+.brand-video {
+  /* Feather only the padded margin so the frame edge never shows */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .brand-logo:hover .brand-icon {
