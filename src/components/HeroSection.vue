@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useScrollProgress } from '../composables/useScrollProgress'
+
+// 0 at the top of the page → 1 after scrolling ~75% of a viewport
+const heroEl = ref<HTMLElement | null>(null)
+const scrollOut = useScrollProgress(heroEl, (rect, vh) => -rect.top / (vh * 0.75))
+
 const stats = [
   {
     num: '5+ 年',
-    label: '兩人合計網站開發經驗',
-    sub: '大廠與新創專案實戰積累'
+    label: '網站開發經驗',
+    sub: '曾任助教，擅長把技術講清楚'
   },
   {
     num: '100%',
@@ -12,7 +19,7 @@ const stats = [
   },
   {
     num: '< 10 分鐘',
-    label: '營業時間平均回覆',
+    label: '營業時間內回覆',
     sub: '工程師直接溝通，免轉達'
   },
   {
@@ -24,9 +31,9 @@ const stats = [
 </script>
 
 <template>
-  <section id="top" class="hero-section">
+  <section id="top" ref="heroEl" class="hero-section">
     <div class="hero-container">
-      <div class="hero-main">
+      <div class="hero-main" :style="{ '--p': scrollOut }">
         <div class="hero-copy">
           <!-- Tag / Subtitle -->
           <div class="hero-tag">
@@ -48,8 +55,8 @@ const stats = [
 
           <!-- Action Buttons -->
           <div class="hero-actions">
-            <a href="#cases" class="btn btn-primary btn-lg">
-              <span>看示範作品</span>
+            <a href="#services" class="btn btn-primary btn-lg">
+              <span>了解服務內容</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -66,13 +73,15 @@ const stats = [
 
         <!-- Brand Logo -->
         <div class="hero-visual">
-          <img
-            src="/brand/logo-full.webp"
-            alt="緹拉米蘇 Tiramisu Web Studio — 網站開發 × 部屬維運 × 使用者體驗"
-            width="720"
-            height="716"
-            fetchpriority="high"
-          >
+          <div class="hero-visual-scroll">
+            <img
+              src="/brand/logo-full.webp"
+              alt="緹拉米蘇 Tiramisu Web Studio — 網站開發 × 部屬維運 × 使用者體驗"
+              width="720"
+              height="716"
+              fetchpriority="high"
+            >
+          </div>
         </div>
       </div>
 
@@ -123,7 +132,7 @@ const stats = [
   animation: logo-enter 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.hero-visual::before {
+.hero-visual-scroll::before {
   content: '';
   position: absolute;
   inset: 4% 14% 30%;
@@ -172,6 +181,33 @@ const stats = [
   }
 }
 
+/* Scroll-out: as the page scrolls, the copy drifts up and the logo zooms toward the viewer */
+.hero-copy {
+  opacity: calc(1 - var(--p, 0) * 1.3);
+  transform: translateY(calc(var(--p, 0) * -48px));
+  will-change: opacity, transform;
+}
+
+.hero-visual-scroll {
+  position: relative;
+  opacity: calc(1 - var(--p, 0) * 1.1);
+  transform: translateY(calc(var(--p, 0) * 90px)) scale(calc(1 + var(--p, 0) * 0.22));
+  transform-origin: center 40%;
+  will-change: opacity, transform;
+}
+
+/* Stacked layout (logo above copy): the copy is what visitors scroll down to read,
+   so only the logo recedes */
+@media (max-width: 900px) {
+  .hero-copy {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-visual-scroll {
+    transform: scale(calc(1 - var(--p, 0) * 0.12));
+  }
+}
+
 /* Reduced motion: keep the fade-in and glow, drop all movement */
 @keyframes logo-fade {
   from { opacity: 0; }
@@ -187,11 +223,15 @@ const stats = [
   .hero-visual {
     animation: logo-fade 1.2s ease both;
   }
-  .hero-visual::before {
+  .hero-visual-scroll::before {
     animation-name: logo-glow-soft;
   }
   .hero-visual img {
     animation: none;
+  }
+  .hero-copy,
+  .hero-visual-scroll {
+    transform: none;
   }
 }
 
