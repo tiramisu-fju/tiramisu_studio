@@ -1,0 +1,238 @@
+:root {
+  /* Tiramisu Palette — sampled from public/tiramisu_logo */
+  --accent: #8B4523;               /* Cocoa Powder (logo top) */
+  --accent-rgb: 139, 69, 35;
+  --accent-deep: #5E2A12;          /* Dark Cocoa */
+  --accent-light: #FBEFDC;         /* Mascarpone Cream (logo layer) */
+  --accent-border: #EBCFA8;        /* Ladyfinger Sponge */
+
+  --cocoa-dark: #4F1D08;           /* Logo wordmark brown */
+  --espresso-black: #2A1206;       /* Ultra Deep Espresso */
+
+  --leaf-green: #5B7536;           /* Mint Leaf (logo garnish) */
+  --leaf-green-light: #EDF2E2;
+
+  --ladyfinger: #E8C9A0;           /* Sponge tone, accent on dark bg */
+
+  --bg-page: #F9F5E8;              /* Logo cream background */
+  --bg-card: #FFFDF8;
+  --bg-card-warm: #FCF7EC;
+  --bg-dark: #2E1508;              /* Dark Roast Chocolate Section */
+  --bg-dark-card: #3A1D0E;
+  --bg-muted: #F2E9D6;
+  --bg-input: #FFFDF8;
+
+  --text-main: #4F1D08;            /* Logo wordmark brown */
+  --text-body: #5C3A28;            /* Warm Mocha Body */
+  --text-muted: #856A57;           /* Latte Muted */
+  --text-light: #D9C4AC;
+  --text-white: #FFFFFF;
+
+  --border-light: #ECE1CC;
+  --border-medium: #DCC9AC;
+  --border-dark: #553521;
+
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(79, 29, 8, 0.05);
+  --shadow-md: 0 6px 16px rgba(79, 29, 8, 0.07);
+  --shadow-lg: 0 14px 36px rgba(79, 29, 8, 0.12);
+
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--cocoa-dark);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+/* Common Section Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 92px 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 20px;
+  }
+}
+
+.section-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin: 10px 0 14px;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--cocoa-dark);
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  margin: 0 0 38px;
+  color: var(--text-muted);
+  font-size: 16px;
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+/* Common Card style */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  color: #FFFFFF;
+  background: var(--accent-deep);
+  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--cocoa-dark);
+  border: 1px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-light);
+  border-color: var(--cocoa-dark);
+  color: var(--cocoa-dark);
+  transform: translateY(-1px);
+}
+
+.btn-line {
+  background: #06C755;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.btn-line:hover {
+  background: #05B34C;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.badge-accent {
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+}
+
+.badge-muted {
+  background: var(--bg-muted);
+  color: var(--text-body);
+}
+
+.badge-mint {
+  background: var(--leaf-green-light);
+  color: var(--leaf-green);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-border);
+}
