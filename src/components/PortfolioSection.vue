@@ -11,8 +11,10 @@ interface Work {
   desc: string
   features: string[]
   tags: string[]
-  // 手機截圖，放在 public/works/<作品>/ 底下
+  // 截圖放在 public/works/<作品>/ 底下
   screens: Screen[]
+  // 截圖類型：手機直式（預設）或電腦橫式
+  device?: 'mobile' | 'desktop'
   // 選填：網站或展示連結
   link?: string
 }
@@ -39,6 +41,46 @@ const works: Work[] = [
       { src: '/works/zhizhang7/05-preorder.png', caption: '預購清單' },
       { src: '/works/zhizhang7/06-accounts.png', caption: '帳戶管理' },
       { src: '/works/zhizhang7/07-payment.png', caption: '收款單分享' }
+    ]
+  },
+  {
+    title: 'maomaoshu 寵物紀錄',
+    category: '個人產品 · 寵物照護 App',
+    tagline: '毛孩的大小事，一指記下',
+    desc: '為飼主打造的寵物生活紀錄 App。餵食、如廁、體重、健康與保養一鍵快速記錄，再用時間軸、月曆與統計圖表看出毛孩的生活規律。',
+    features: [
+      '五大類快速記錄，常用份量一點就填好',
+      '待辦提醒，完成時自動記一筆',
+      '清單、月曆、統計三種檢視，一眼看出作息變化',
+      '多隻寵物切換，邀請家人一起照顧'
+    ],
+    tags: ['PWA', '多人共享', '資料視覺化', '角色設計'],
+    screens: [
+      { src: '/works/maomaoshu7/01-home.png', caption: '首頁' },
+      { src: '/works/maomaoshu7/02-feed.png', caption: '快速記錄' },
+      { src: '/works/maomaoshu7/03-timeline.png', caption: '時間軸' },
+      { src: '/works/maomaoshu7/04-calendar.png', caption: '月曆檢視' },
+      { src: '/works/maomaoshu7/05-stats.png', caption: '統計圖表' },
+      { src: '/works/maomaoshu7/06-pets.png', caption: '多寵物管理' }
+    ]
+  },
+  {
+    title: 'ClassCue',
+    category: '個人產品 · 課堂互動系統',
+    tagline: 'Hey! Raise your Hand',
+    desc: '專為電腦教室設計的線上舉手系統，已在多個班級實際使用。學生依座位登記後，一鍵就能排隊問問題或請老師驗收，老師不用再滿教室找舉手的人。',
+    features: [
+      '依教室版型呈現座位表，可切換不同教室',
+      '問問題與驗收分開排隊，狀態用顏色即時標示',
+      '學號綁定座位，排隊順序一目了然',
+      '首次使用有步驟教學，學生上手不需說明'
+    ],
+    tags: ['Web App', '即時狀態', '教育'],
+    device: 'desktop',
+    screens: [
+      { src: '/works/classcue/01-seatmap.png', caption: '教室座位表' },
+      { src: '/works/classcue/02-queue.png', caption: '登記座位與排隊' },
+      { src: '/works/classcue/03-onboarding.png', caption: '新手教學' }
     ]
   }
 ]
@@ -71,8 +113,11 @@ const works: Work[] = [
         </div>
 
         <div class="work-gallery" tabindex="0" :aria-label="`${w.title} 畫面截圖，可左右滑動`">
-          <figure v-for="s in w.screens" :key="s.src" class="phone">
-            <div class="phone-frame">
+          <figure v-for="s in w.screens" :key="s.src" :class="w.device === 'desktop' ? 'desktop' : 'phone'">
+            <div v-if="w.device === 'desktop'" class="desktop-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div :class="w.device === 'desktop' ? 'desktop-frame' : 'phone-frame'">
               <img :src="s.src" :alt="`${w.title}：${s.caption}`" loading="lazy" decoding="async" />
             </div>
             <figcaption>{{ s.caption }}</figcaption>
@@ -104,9 +149,26 @@ const works: Work[] = [
   margin-top: 28px;
 }
 
+/* Alternate sides so stacked cards don't look repetitive */
+.work-card:nth-of-type(even) {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+
+.work-card:nth-of-type(even) .work-info {
+  order: 2;
+}
+
 @media (max-width: 900px) {
-  .work-card {
+  .work-card,
+  .work-card:nth-of-type(even) {
     grid-template-columns: 1fr;
+  }
+
+  .work-card:nth-of-type(even) .work-info {
+    order: 0;
+  }
+
+  .work-card {
     gap: 28px;
     padding: 28px 20px;
   }
@@ -252,7 +314,49 @@ const works: Work[] = [
   display: block;
 }
 
-.phone figcaption {
+/* Desktop screenshots: browser-style frame */
+.desktop {
+  flex: 0 0 auto;
+  width: min(520px, 82vw);
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.desktop-bar {
+  display: flex;
+  gap: 6px;
+  padding: 9px 12px;
+  background: var(--bg-dark);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.desktop-bar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.desktop-frame {
+  aspect-ratio: 3794 / 1811;
+  border: 4px solid var(--bg-dark);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card-warm);
+  box-shadow: var(--shadow-md);
+}
+
+.desktop-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.phone figcaption,
+.desktop figcaption {
   margin-top: 10px;
   text-align: center;
   font-size: 13.5px;

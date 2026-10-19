@@ -1,7 +1,9 @@
 <script setup lang="ts">
-// Team member profiles (no personal names by request; details from each member's résumé)
-const members = [
+// Team member profiles (details from each member's résumé; name is optional)
+const members: { name?: string; avatar?: string; role: string; icon: string; badge: string[]; bio: string; experiences: { org: string; role: string; desc: string }[]; skills: string[] }[] = [
   {
+    name: '呱你芭樂',
+    avatar: '/guayourguava.png',
     role: '全端開發 ＆ 系統規劃',
     icon: 'code',
     // [main, tail] — the tail never wraps on its own
@@ -10,7 +12,7 @@ const members = [
     experiences: [
       {
         org: '上市遊戲公司',
-        role: '全端工程師（現職）',
+        role: '全端工程師',
         desc: '獨立開發遊戲後台管理系統（Vue.js + FastAPI）、參與官方網站前端開發，並導入 Docker、AWS 部署與 CI/CD 自動化流程'
       },
       {
@@ -71,7 +73,8 @@ const members = [
         <article v-for="m in members" :key="m.role" v-reveal class="member-card">
           <div class="member-intro">
             <div class="member-head">
-              <div class="member-avatar" aria-hidden="true">
+              <img v-if="m.avatar" :src="m.avatar" :alt="m.name ?? ''" class="member-avatar-img" />
+              <div v-else class="member-avatar" aria-hidden="true">
                 <svg v-if="m.icon === 'code'" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="16 18 22 12 16 6"></polyline>
                   <polyline points="8 6 2 12 8 18"></polyline>
@@ -82,6 +85,7 @@ const members = [
                 </svg>
               </div>
               <div>
+                <p v-if="m.name" class="member-name">{{ m.name }}</p>
                 <h3 class="member-role">{{ m.role }}</h3>
                 <span class="member-badge">{{ m.badge[0] }} <span class="nowrap">{{ m.badge[1] }}</span></span>
               </div>
@@ -157,6 +161,21 @@ const members = [
   border-radius: var(--radius-lg);
   background: var(--accent-light);
   color: var(--accent);
+}
+
+.member-avatar-img {
+  width: 96px;
+  height: auto;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.member-name {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 .member-role {
