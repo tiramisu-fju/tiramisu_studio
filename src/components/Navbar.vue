@@ -93,6 +93,7 @@ const closeMenu = () => {
 
 <style scoped>
 .navbar {
+  font-family: var(--font-display);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -145,14 +146,15 @@ const closeMenu = () => {
 }
 
 .brand-text {
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 20px;
   letter-spacing: 0.12em;
   color: var(--cocoa-dark);
 }
 
 .brand-sub {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 11.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import Navbar from './components/Navbar.vue'
 import HeroSection from './components/HeroSection.vue'
-import StatementSection from './components/StatementSection.vue'
 import ServicesSection from './components/ServicesSection.vue'
 import ApproachSection from './components/ApproachSection.vue'
 import ProcessSection from './components/ProcessSection.vue'
-import FoundingClientsSection from './components/FoundingClientsSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import FaqSection from './components/FaqSection.vue'
 import ContactSection from './components/ContactSection.vue'
@@ -20,11 +18,9 @@ import FooterSection from './components/FooterSection.vue'
     <!-- Main Landing Page Sections -->
     <main>
       <HeroSection />
-      <StatementSection />
       <ServicesSection />
       <ApproachSection />
       <ProcessSection />
-      <FoundingClientsSection />
       <AboutSection />
       <FaqSection />
       <ContactSection />

@@ -43,7 +43,7 @@ const toggleFaq = (index: number) => {
 <template>
   <section id="faq" class="faq-section">
     <div class="faq-container">
-      <p v-reveal class="section-label">06 / FAQ</p>
+      <p v-reveal class="section-label">05 / FAQ</p>
       <h2 v-reveal="80" class="section-title">第一次做網站常問的問題</h2>
       <p v-reveal="160" class="section-desc">
         我們將客戶最常關心的疑慮整理於此。如果您有其他特定問題，隨時歡迎加 LINE 詢問。

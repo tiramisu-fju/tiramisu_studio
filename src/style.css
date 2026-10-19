@@ -33,7 +33,8 @@
   --border-dark: #553521;
 
   --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Noto Serif TC', Georgia, serif;
+  --font-mono: var(--font-sans);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -63,6 +64,7 @@ body {
   background-color: var(--bg-page);
   color: var(--text-main);
   font-family: var(--font-sans);
+  font-weight: 300;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -87,6 +89,11 @@ button, input, select, textarea {
   font: inherit;
 }
 
+h1, h2, .section-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
 /* Common Section Layout */
 .container {
   max-width: 1200px;
@@ -103,9 +110,9 @@ button, input, select, textarea {
 .section-label {
   margin: 0;
   font-family: var(--font-mono);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 13.5px;
-  letter-spacing: 0.08em;
+  letter-spacing: 4px;
   color: var(--accent);
   text-transform: uppercase;
 }
@@ -113,10 +120,10 @@ button, input, select, textarea {
 .section-title {
   margin: 10px 0 14px;
   font-size: clamp(28px, 4vw, 36px);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.3;
   color: var(--cocoa-dark);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
 .section-desc {

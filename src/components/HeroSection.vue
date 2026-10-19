@@ -9,23 +9,18 @@ const scrollOut = useScrollProgress(heroEl, (rect, vh) => -rect.top / (vh * 0.75
 const stats = [
   {
     num: '5+ 年',
-    label: '網站開發經驗',
-    sub: '複雜架構，用白話講給你聽'
+    label: '專做網站，不是兼差',
+    sub: '你擔心的狀況，我們多半都處理過'
   },
   {
     num: '100%',
-    label: '原始碼與網域歸你所有',
-    sub: '不綁架合約，無隱藏保留'
+    label: '網站完全屬於你',
+    sub: '哪天想換廠商，網站和網址都帶得走'
   },
   {
-    num: '< 10 分鐘',
-    label: '營業時間內回覆',
-    sub: '工程師直接溝通，免轉達'
-  },
-  {
-    num: '3～6 個月',
-    label: '上線後完整保固',
-    sub: '安心驗收，長期系統支援'
+    num: '30 分鐘內',
+    label: '找得到人',
+    sub: '直接問做網站的人，不用等業務傳話（營業時間內）'
   }
 ]
 </script>
@@ -38,7 +33,7 @@ const stats = [
           <!-- Tag / Subtitle -->
           <div class="hero-tag">
             <span class="pulse-indicator"></span>
-            <span>網頁設計 · 軟體開發 · 系統維護 · 台北服務全台</span>
+            <span>網頁設計 · 軟體開發 · 系統維護 · 雙北服務全台</span>
           </div>
 
           <!-- Main Headline -->
@@ -49,8 +44,8 @@ const stats = [
 
           <!-- Description -->
           <p class="hero-desc">
-            從報價、設計、開發到上線維護，全程都是同一組人。<br class="desktop-br">
-            不轉包、不換窗口，有問題直接找寫程式的人。
+            從報價、設計、開發到上線維護，工程師兼PM。<br class="desktop-br">
+            不轉包、不換窗口，有問題直接找寫程式的人!
           </p>
 
           <!-- Action Buttons -->
@@ -162,6 +157,7 @@ const stats = [
   position: relative;
   margin-top: 4px;
   text-align: center;
+  font-family: var(--font-display);
   color: var(--cocoa-dark);
 }
 
@@ -176,7 +172,6 @@ const stats = [
 
 .lockup-en {
   margin: 10px 0 0;
-  font-family: var(--font-mono);
   font-size: clamp(13px, 1.5vw, 19px);
   font-weight: 600;
   letter-spacing: 0.3em;
@@ -337,8 +332,8 @@ const stats = [
   margin: 0;
   font-size: clamp(36px, 5.2vw, 60px);
   line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text-main);
   max-width: 960px;
 }

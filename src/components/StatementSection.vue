@@ -57,8 +57,9 @@ const litCount = computed(() => Math.round(clamp01((progress.value - 0.08) / 0.8
 .statement-text {
   margin: 0;
   max-width: 980px;
+  font-family: var(--font-display);
   font-size: clamp(30px, 4.6vw, 60px);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.01em;
 }
