@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.vue'
 import HeroSection from './components/HeroSection.vue'
 import ServicesSection from './components/ServicesSection.vue'
 import ApproachSection from './components/ApproachSection.vue'
+import PortfolioSection from './components/PortfolioSection.vue'
 import ProcessSection from './components/ProcessSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import FaqSection from './components/FaqSection.vue'
@@ -20,6 +21,7 @@ import FooterSection from './components/FooterSection.vue'
       <HeroSection />
       <ServicesSection />
       <ApproachSection />
+      <PortfolioSection />
       <ProcessSection />
       <AboutSection />
       <FaqSection />

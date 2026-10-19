@@ -33,7 +33,7 @@ const stats = [
           <!-- Tag / Subtitle -->
           <div class="hero-tag">
             <span class="pulse-indicator"></span>
-            <span>網頁設計 · 軟體開發 · 系統維護 · 雙北服務全台</span>
+            <span>網頁設計 · 網站開發 · 系統維護 · 雙北服務全台</span>
           </div>
 
           <!-- Main Headline -->

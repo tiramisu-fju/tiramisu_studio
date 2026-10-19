@@ -53,6 +53,7 @@ const closeMenu = () => {
       <nav class="nav-links" aria-label="主選單">
         <a href="#services" class="nav-link">服務</a>
         <a href="#approach" class="nav-link">設計重點</a>
+        <a href="#portfolio" class="nav-link">作品集</a>
         <a href="#process" class="nav-link">合作流程</a>
         <a href="#about" class="nav-link">關於我們</a>
         <a href="#faq" class="nav-link">常見問題</a>
@@ -81,6 +82,7 @@ const closeMenu = () => {
       <div class="mobile-drawer-inner">
         <a href="#services" class="mobile-link" @click="closeMenu">服務範疇</a>
         <a href="#approach" class="mobile-link" @click="closeMenu">設計重點</a>
+        <a href="#portfolio" class="mobile-link" @click="closeMenu">作品集</a>
         <a href="#process" class="mobile-link" @click="closeMenu">合作流程</a>
         <a href="#about" class="mobile-link" @click="closeMenu">關於我們</a>
         <a href="#faq" class="mobile-link" @click="closeMenu">常見問題</a>

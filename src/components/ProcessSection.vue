@@ -92,7 +92,7 @@ const goToStep = (i: number) => {
     <div ref="scroller" class="process-scroller" :style="{ '--steps': steps.length }">
       <div class="process-sticky">
         <div class="process-container">
-          <p v-reveal class="section-label-dark">03 / PROCESS</p>
+          <p v-reveal class="section-label-dark">04 / PROCESS</p>
           <h2 v-reveal="80" class="section-title-dark">合作流程</h2>
           <p v-reveal="160" class="flow-summary">洽談 → 規劃 → 設計 → 開發 → 測試 → 上線 → 維護</p>
           <p v-reveal="240" class="section-desc-dark">
