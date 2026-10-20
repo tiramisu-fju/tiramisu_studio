@@ -1,62 +1,67 @@
 <script setup lang="ts">
-// Team member profiles (details from each member's résumé; name is optional)
-const members: { name?: string; avatar?: string; role: string; icon: string; badge: string[]; bio: string; experiences: { org: string; role: string; desc: string }[]; skills: string[] }[] = [
+// What the studio can build in-house, end to end
+const capabilities = [
   {
-    name: '呱你芭樂',
-    avatar: '/guayourguava.png',
-    role: '全端開發 ＆ 系統規劃',
     icon: 'code',
-    // [main, tail] — the tail never wraps on its own
-    badge: ['輔仁大學', '資訊管理碩士'],
-    bio: '負責網站的前後端開發與系統規劃。從需求訪談、系統分析、資料庫設計到介面開發都能獨立完成，擅長把抽象的技術概念整理成清楚的流程圖與畫面，讓你在每個階段都看得懂網站正在長成什麼樣子。',
-    experiences: [
-      {
-        org: '上市遊戲公司',
-        role: '全端工程師',
-        desc: '獨立開發遊戲後台管理系統（Vue.js + FastAPI）、參與官方網站前端開發，並導入 Docker、AWS 部署與 CI/CD 自動化流程'
-      },
-      {
-        org: '個人產品',
-        role: '獨立開發',
-        desc: '課堂互動系統（已在多個班級實際使用）、AI 智慧助教對話系統、記帳系統，從需求分析到部署皆獨立完成'
-      },
-      {
-        org: '輔仁大學',
-        role: '專題技術指導',
-        desc: '擔任程式課程助教，每學期指導約 20 位學生進行專題開發，協助系統架構設計與技術選型'
-      }
-    ],
-    skills: ['Vue.js', 'TypeScript', 'FastAPI', 'ASP.NET MVC', 'MySQL／SQL Server', 'Docker', 'AWS', 'GitLab CI/CD', 'Figma']
+    title: '前後端開發',
+    desc: '從介面、API 到資料庫，整套程式從頭寫到尾，架構一致、日後好維護。'
   },
   {
-    role: '雲端架構 ＆ 資安維運',
+    icon: 'flow',
+    title: '系統規劃',
+    desc: '需求訪談、系統分析到資料庫設計，先把流程圖與畫面整理清楚，再開始動工。'
+  },
+  {
+    icon: 'cloud',
+    title: '雲端架構',
+    desc: '熟悉 AWS、GCP、Azure 三大平台，持有 9 張雲端證照，依規模選擇合適又不浪費的架構。'
+  },
+  {
     icon: 'shield',
-    badge: ['持有 AWS・GCP・Azure', '共 9 張雲端證照'],
-    bio: '負責網站背後的雲端架構、部署與資安。熟悉三大雲端平台，從架構設計、上線部署到備份與災難復原都有實戰經驗，並習慣在開發初期就把資安納入設計，而不是上線後才補救。',
-    experiences: [
-      {
-        org: '萬里雲 CloudMile',
-        role: '雲端工程師實習',
-        desc: '數十 TB 級資料備份還原與災難復原 PoC、Kubernetes 錯誤模擬、GCP MySQL 效能測試'
-      },
-      {
-        org: '伊雲谷 eCloudvalley',
-        role: '開發暨維護專案',
-        desc: '將客戶的 IoT 架構從 AWS 遷移至 Azure'
-      },
-      {
-        org: 'Intecular（美國）',
-        role: 'Cloud Engineer',
-        desc: '智慧插座雲端基礎設施、AWS IoT Core、MQTT／WebSocket API 與裝置授權認證'
-      },
-      {
-        org: '物流管理系統',
-        role: '獨立接案',
-        desc: '從架構設計、開發、容器化部署到維護一手包辦'
-      }
-    ],
-    skills: ['AWS', 'GCP', 'Azure', 'Docker', 'Kubernetes', 'Terraform', 'Python／FastAPI', 'Vue／Node.js', 'Linux 維運']
+    title: '資安維運',
+    desc: '開發初期就把資安納入設計，上線後定期備份與修補，並具備災難復原實戰經驗。'
   }
+]
+
+// Real projects behind those capabilities
+const cases = [
+  {
+    org: '上市遊戲公司',
+    scope: '後台系統與官網',
+    desc: '遊戲後台管理系統（Vue.js + FastAPI）與官方網站前端，並導入 Docker、AWS 部署與 CI/CD 自動化'
+  },
+  {
+    org: '萬里雲 CloudMile',
+    scope: '備份與災難復原',
+    desc: '數十 TB 級資料備份還原與災難復原 PoC、Kubernetes 錯誤模擬、GCP MySQL 效能測試'
+  },
+  {
+    org: '伊雲谷 eCloudvalley',
+    scope: '跨雲遷移',
+    desc: '將客戶的 IoT 架構從 AWS 遷移至 Azure'
+  },
+  {
+    org: 'Intecular（美國）',
+    scope: 'IoT 雲端基礎設施',
+    desc: '智慧插座雲端基礎設施、AWS IoT Core、MQTT／WebSocket API 與裝置授權認證'
+  },
+  {
+    org: '物流管理系統',
+    scope: '完整交付',
+    desc: '從架構設計、開發、容器化部署到維護一手包辦'
+  },
+  {
+    org: '自有產品',
+    scope: '從零到上線',
+    desc: '課堂互動系統（已在多個班級實際使用）、AI 智慧助教對話系統、記帳系統'
+  }
+]
+
+const stack = [
+  { group: '前端', items: ['Vue.js', 'TypeScript', 'Figma'] },
+  { group: '後端', items: ['Python／FastAPI', 'ASP.NET', 'Node.js'] },
+  { group: '資料庫', items: ['MySQL', 'SQL Server', 'PostgreSQL'] },
+  { group: '雲端與維運', items: ['AWS', 'GCP', 'Azure', 'Docker', 'Kubernetes', 'Terraform', 'GitLab CI/CD', 'Linux'] }
 ]
 </script>
 
@@ -64,50 +69,61 @@ const members: { name?: string; avatar?: string; role: string; icon: string; bad
   <section id="about" class="about-section">
     <div class="container">
       <p v-reveal class="section-label">05 / ABOUT</p>
-      <h2 v-reveal="80" class="section-title">接你案子的，就是這兩個人</h2>
+      <h2 v-reveal="80" class="section-title">從程式到雲端，技術都在自己手上</h2>
       <p v-reveal="160" class="section-desc">
-        我們是兩人組成的網站工作室，累積約 5 年網站開發經驗。比起堆砌技術名詞，我們更擅長把複雜的系統架構拆解成你聽得懂的白話，讓你清楚每一個決定背後的原因。刻意維持精簡編制：沒有業務轉述時的資訊失真、沒有層層轉包的抽成灌水。你說的需求與痛點，直接由寫程式的人第一手聽到並實現。
+        累積約 5 年網站開發經驗，前後端、資料庫、雲端部署到資安維運都由團隊內部完成，不需要外包任何一個環節。比起堆砌技術名詞，我們更擅長把複雜的系統架構拆解成你聽得懂的白話，讓你清楚每一個決定背後的原因。
       </p>
 
-      <div class="team-list">
-        <article v-for="m in members" :key="m.role" v-reveal class="member-card">
-          <div class="member-intro">
-            <div class="member-head">
-              <img v-if="m.avatar" :src="m.avatar" :alt="m.name ?? ''" class="member-avatar-img" />
-              <div v-else class="member-avatar" aria-hidden="true">
-                <svg v-if="m.icon === 'code'" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-                <svg v-else width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  <polyline points="9 12 11 14 15 10"></polyline>
-                </svg>
-              </div>
-              <div>
-                <p v-if="m.name" class="member-name">{{ m.name }}</p>
-                <h3 class="member-role">{{ m.role }}</h3>
-                <span class="member-badge">{{ m.badge[0] }} <span class="nowrap">{{ m.badge[1] }}</span></span>
-              </div>
-            </div>
-
-            <p class="member-bio">{{ m.bio }}</p>
-
-            <div class="skills-row">
-              <span v-for="skill in m.skills" :key="skill" class="skill-tag">{{ skill }}</span>
-            </div>
+      <div class="cap-grid">
+        <article v-for="(c, i) in capabilities" :key="c.title" v-reveal="i * 80" class="cap-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg v-if="c.icon === 'code'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <svg v-else-if="c.icon === 'flow'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+              <path d="M6.5 10v4a3 3 0 0 0 3 3H14"></path>
+            </svg>
+            <svg v-else-if="c.icon === 'cloud'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+            </svg>
+            <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
           </div>
+          <h3 class="cap-title">{{ c.title }}</h3>
+          <p class="cap-desc">{{ c.desc }}</p>
+        </article>
+      </div>
 
-          <ul class="exp-list" aria-label="經歷">
-            <li v-for="(e, i) in m.experiences" :key="i" class="exp-item">
+      <div v-reveal class="proof-card">
+        <div class="proof-col">
+          <h3 class="proof-heading">實戰經驗</h3>
+          <ul class="exp-list">
+            <li v-for="e in cases" :key="e.org" class="exp-item">
               <div class="exp-head">
                 <span class="exp-org">{{ e.org }}</span>
-                <span class="exp-role">{{ e.role }}</span>
+                <span class="exp-scope">{{ e.scope }}</span>
               </div>
               <p class="exp-desc">{{ e.desc }}</p>
             </li>
           </ul>
-        </article>
+        </div>
+
+        <div class="proof-col">
+          <h3 class="proof-heading">技術棧</h3>
+          <dl class="stack-list">
+            <div v-for="s in stack" :key="s.group" class="stack-row">
+              <dt class="stack-group">{{ s.group }}</dt>
+              <dd class="stack-items">
+                <span v-for="item in s.items" :key="item" class="skill-tag">{{ item }}</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
@@ -120,15 +136,63 @@ const members: { name?: string; avatar?: string; role: string; icon: string; bad
   border-bottom: 1px solid var(--border-light);
 }
 
-.team-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+/* Capabilities */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-.member-card {
+@media (max-width: 960px) {
+  .cap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .cap-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cap-card {
+  padding: 26px 24px;
+  background: var(--bg-card-warm);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.cap-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border-radius: var(--radius-md);
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.cap-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.cap-desc {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+
+/* Experience + stack */
+.proof-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 48px;
   padding: 36px;
   background: var(--bg-card-warm);
@@ -137,90 +201,20 @@ const members: { name?: string; avatar?: string; role: string; icon: string; bad
 }
 
 @media (max-width: 860px) {
-  .member-card {
+  .proof-card {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 36px;
     padding: 28px 22px;
   }
 }
 
-.member-head {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-
-.member-avatar {
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-lg);
-  background: var(--accent-light);
-  color: var(--accent);
-}
-
-.member-avatar-img {
-  width: 96px;
-  height: auto;
-  flex-shrink: 0;
-  image-rendering: pixelated;
-}
-
-.member-name {
-  margin: 0 0 2px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-
-.member-role {
-  margin: 0;
-  font-size: 22px;
+.proof-heading {
+  margin: 0 0 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-main);
 }
 
-.member-badge {
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-.member-bio {
-  margin: 0 0 20px;
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--text-body);
-}
-
-.skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.skill-tag {
-  background: var(--bg-card);
-  color: var(--text-muted);
-  font-size: 12.5px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-light);
-}
-
-/* Experience timeline */
 .exp-list {
   list-style: none;
   margin: 0;
@@ -260,7 +254,7 @@ const members: { name?: string; avatar?: string; role: string; icon: string; bad
   color: var(--text-main);
 }
 
-.exp-role {
+.exp-scope {
   font-size: 13px;
   font-weight: 600;
   color: var(--text-muted);
@@ -271,5 +265,37 @@ const members: { name?: string; avatar?: string; role: string; icon: string; bad
   font-size: 14px;
   line-height: 1.65;
   color: var(--text-body);
+}
+
+.stack-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stack-group {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.stack-items {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
 }
 </style>
