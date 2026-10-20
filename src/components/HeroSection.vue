@@ -19,8 +19,9 @@ const stats = [
   },
   {
     num: '30 分鐘內',
-    label: '找得到人',
-    sub: '直接問做網站的人，不用等業務傳話（營業時間內）'
+    label: '直接回覆',
+    note: '*營業時間內',
+    sub: '直接問做網站的人，不用等業務傳話'
   }
 ]
 </script>
@@ -44,8 +45,8 @@ const stats = [
 
           <!-- Description -->
           <p class="hero-desc">
-            從報價、設計、開發到上線維護，工程師兼PM。<br class="desktop-br">
-            不轉包、不換窗口，有問題直接找寫程式的人!
+            從報價、設計、開發到上線維護，全程由同一位工程師負責。<br class="desktop-br">
+            不轉包、不換窗口，有問題直接找寫程式的人！
           </p>
 
           <!-- Action Buttons -->
@@ -86,7 +87,9 @@ const stats = [
       <div class="stats-grid">
         <div v-for="(stat, i) in stats" :key="stat.label" v-reveal="i * 100" class="stat-card">
           <div v-count-up="stat.num" class="stat-number">{{ stat.num }}</div>
-          <div class="stat-label">{{ stat.label }}</div>
+          <div class="stat-label">
+            {{ stat.label }}<span v-if="stat.note" class="stat-note">{{ stat.note }}</span>
+          </div>
           <div class="stat-sub">{{ stat.sub }}</div>
         </div>
       </div>
@@ -412,6 +415,13 @@ const stats = [
   color: var(--text-main);
   font-size: 15px;
   font-weight: 600;
+}
+
+.stat-note {
+  margin-left: 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .stat-sub {

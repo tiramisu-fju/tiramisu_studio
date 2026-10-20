@@ -31,10 +31,6 @@
               <span class="channel-label">PRO360 專家合作：</span>
               <a href="https://www.pro360.com.tw/service/724506" target="_blank" rel="noopener noreferrer" class="channel-link">PRO360 官方驗證頁面連結 →</a>
             </div>
-            <div class="channel-item">
-              <span class="channel-label">服務時段：</span>
-              <span class="channel-val">週一至週五 09:30 - 19:30（週末緊急技術留守）</span>
-            </div>
           </div>
         </div>
       </div>
