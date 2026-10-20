@@ -30,8 +30,7 @@ const scrollToTop = () => {
       <div class="footer-meta-row">
         <span>© 2026 緹拉米蘇 Tiramisu Web Studio</span>
         <span>台北市 · 服務全台遠端合作 · 本網站原始碼 100% 自研不外包</span>
-      </div>
-    </div>
+      </div>    </div>
   </footer>
 </template>
 
@@ -126,5 +125,4 @@ const scrollToTop = () => {
   gap: 12px;
   font-size: 13.5px;
   color: var(--text-muted);
-}
-</style>
+}</style>

@@ -9,7 +9,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: '網站做好之後，我可以自己改內容嗎？',
-    a: '可以！網站可依需求附帶直覺的管理後台。包含文字、輪播 Banner、作品圖集、最新消息都能由你或員工自行更新，上線時會提供一對一視訊教學與錄影存檔。'
+    a: '可以！網站可依需求附帶直覺的管理後台。包含文字、輪播 Banner、作品圖集、最新消息都能由你或員工自行更新，上線時可提供一對一視訊教學與錄影存檔。'
   },
   {
     q: '主機和網域是什麼？需要另外付錢嗎？',
@@ -29,7 +29,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: '上線後如果網站發生問題或當機怎麼辦？',
-    a: '合約保固期內，所有非人為因素造成的錯誤皆提供免費緊急除錯服務。保固期滿後，可依需求選擇輕量月費維護方案（含定期備份、資安修補），或以單次工時彈性計費。'
+    a: '合約保固期內，程式本身的問題皆可免費修正，緊急狀況優先處理。保固期滿後，可依需求選擇輕量月費維護方案（含定期備份、資安修補），或以單次工時彈性計費。'
   }
 ]
 
@@ -46,7 +46,12 @@ const toggleFaq = (index: number) => {
       <p v-reveal class="section-label">06 / FAQ</p>
       <h2 v-reveal="80" class="section-title">第一次做網站常問的問題</h2>
       <p v-reveal="160" class="section-desc">
-        我們將客戶最常關心的疑慮整理於此。如果您有其他特定問題，隨時歡迎加 LINE 詢問。
+        我們將客戶最常關心的疑慮整理於此。如果您有其他特定問題，隨時歡迎<a
+          href="https://lin.ee/wAmRdNX"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="faq-line-link"
+        >加 LINE 詢問</a>。
       </p>
 
       <div class="faq-list">
@@ -87,6 +92,18 @@ const toggleFaq = (index: number) => {
 .faq-container {
   max-width: 860px;
   margin: 0 auto;
+}
+
+.faq-line-link {
+  margin: 0 2px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.faq-line-link:hover {
+  color: #06C755;
 }
 
 .faq-list {
